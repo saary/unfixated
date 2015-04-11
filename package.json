@@ -1,0 +1,34 @@
+{
+  "name": "unfixated",
+  "version": "0.0.1",
+  "description": "Stream fixed width files to objects",
+  "main": "unfixated.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "byline": "^4.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saary/unfixated.git"
+  },
+  "keywords": [
+    "fixed",
+    "width",
+    "text",
+    "files",
+    "stream",
+    "objects"
+  ],
+  "author": "Saar Yahalom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saary/unfixated/issues"
+  },
+  "homepage": "https://github.com/saary/unfixated"
+}
