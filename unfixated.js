@@ -46,6 +46,11 @@ function UnFixated(format, opt) {
   this.lineStream = new LineStream();
   
   this.lineStream.on('data', lineToObject);
+  var end = this.end.bind(this);
+  this.end = function() {
+    this.lineStream.end();
+    end();
+  };  
 }
 
 UnFixated.prototype._transform = function (data, encoding, callback) {

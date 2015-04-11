@@ -1,6 +1,6 @@
 {
   "name": "unfixated",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Stream fixed width files to objects",
   "main": "unfixated.js",
   "directories": {
