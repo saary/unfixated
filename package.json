@@ -7,9 +7,13 @@
     "test": "test"
   },
   "dependencies": {
-    "byline": "^4.2.1"
+    "byline": "^4.2.1",
+    "iconv": "^2.1.11"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
   "scripts": {
     "test": "mocha test"
   },
