@@ -5,7 +5,7 @@ var util = require('util');
 util.inherits(UnFixated, Transform);
 
 function UnFixated(format, opt) {
-  if (!(this instanceof UnFixated)) {    
+  if (!(this instanceof UnFixated)) {
     return new UnFixated(format, opt);
   }
 
@@ -25,7 +25,7 @@ function UnFixated(format, opt) {
 
     var offset = 0;
     var format = self._format;
-    
+
     var obj = {};
 
     Object.keys(format).forEach(function(key) {
@@ -36,21 +36,20 @@ function UnFixated(format, opt) {
       if (value) {
         obj[key] = value;
       }
-      
+
       offset += format[key];
     });
-
-    self.push(obj);   
+    self.push(obj);
   }
 
   this.lineStream = new LineStream();
-  
+
   this.lineStream.on('data', lineToObject);
-  var end = this.end.bind(this);
-  this.end = function() {
-    this.lineStream.end();
-    end();
-  };  
+
+  this.on('finish', function() {
+    self.lineStream.end()
+  })
+
 }
 
 UnFixated.prototype._transform = function (data, encoding, callback) {
