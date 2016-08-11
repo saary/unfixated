@@ -1,3 +1,4 @@
+'use strict';
 var LineStream = require('byline').LineStream;
 var Transform = require('stream').Transform;
 var util = require('util');
@@ -5,7 +6,7 @@ var util = require('util');
 util.inherits(UnFixated, Transform);
 
 function UnFixated(format, opt) {
-  if (!(this instanceof UnFixated)) {
+  if (!(this instanceof UnFixated)) {    
     return new UnFixated(format, opt);
   }
 
@@ -25,31 +26,32 @@ function UnFixated(format, opt) {
 
     var offset = 0;
     var format = self._format;
-
+    
     var obj = {};
 
-    Object.keys(format).forEach(function(key) {
-      var value = line.substr(offset, format[key]);
+    format.forEach(function(item) {
+      var value = line.substr(offset, item[1]);
 
       value = value && value.trim();
 
       if (value) {
-        obj[key] = value;
+        obj[item[0]] = value;
       }
-
-      offset += format[key];
+      
+      offset += item[1];
     });
-    self.push(obj);
+
+    self.push(obj);   
   }
 
   this.lineStream = new LineStream();
-
+  
   this.lineStream.on('data', lineToObject);
-
-  this.on('finish', function() {
-    self.lineStream.end()
-  })
-
+  var end = this.end.bind(this);
+  this.end = function() {
+    this.lineStream.end();
+    end();
+  };  
 }
 
 UnFixated.prototype._transform = function (data, encoding, callback) {
@@ -58,6 +60,10 @@ UnFixated.prototype._transform = function (data, encoding, callback) {
 
   if (Buffer.isBuffer(value)) {
     data = value.toString();
+    encoding = 'utf8';
+  }
+  else {
+    data = value;
     encoding = 'utf8';
   }
 
