@@ -1,6 +1,6 @@
 {
   "name": "unfixated",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Stream fixed width files to objects",
   "main": "unfixated.js",
   "directories": {
@@ -17,6 +17,9 @@
   "scripts": {
     "test": "mocha test"
   },
+  "contributors": [
+    { "name": "jobe451", "url": "https://github.com/jobe451"}
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/saary/unfixated.git"
