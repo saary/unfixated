@@ -60,6 +60,10 @@ UnFixated.prototype._transform = function (data, encoding, callback) {
     data = value.toString();
     encoding = 'utf8';
   }
+  else {
+    data = value;
+    encoding = 'utf8';
+  }
 
   this.lineStream.write(data, encoding);
   return callback();
