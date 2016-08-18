@@ -57,15 +57,11 @@ UnFixated.prototype._transform = function (data, encoding, callback) {
   var value = convert? convert(data): data;
 
   if (Buffer.isBuffer(value)) {
-    data = value.toString();
     encoding = 'utf8';
+    value = value.toString();
   }
-  else {
-    data = value;
-    encoding = 'utf8';
-  }
-
-  this.lineStream.write(data, encoding);
+  
+  this.lineStream.write(value, encoding);
   return callback();
 };
 
